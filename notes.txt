@@ -1,53 +1,75 @@
-# Exercice 1:
+Exercice 1 (Questions 2-3):
+    Quand on charge le CSV dans le DataFrame et en constatant les erreurs, on obtient:
+    Skipping line 162: expected 2 fields, saw 3
+    Skipping line 175: expected 2 fields, saw 3
+    Skipping line 216: expected 2 fields, saw 3
+    Skipping line 232: expected 2 fields, saw 3
 
-# Quand on charge le CSV dans le DataFrame et en constatant les erreurs, on obtient:
-# Skipping line 162: expected 2 fields, saw 3
-# Skipping line 175: expected 2 fields, saw 3
-# Skipping line 216: expected 2 fields, saw 3
-# Skipping line 232: expected 2 fields, saw 3
+    En y jetant un oeil on constate que les données ne sont pas erronées 
+    mais qu'il s'agit d'un décallage des données d'une colonne, 
+    dûes à un ajout de virgules dans le champs adresse.
 
-# En y jetant un oeil on constate que les données ne sont pas erronées 
-# mais qu'il s'agit d'un décallage des données d'une colonne, 
-# dûes à un ajout de virgules dans le champs adresse.
+    Pas besoin de supprimer ces lignes en question, on va juste préciser dans la fonction read_csv 
+    que l'on veut séparer les entrées uniquement par des ";" avec le paramètre: sep=";"
 
-# Pas besoin de supprimer ces lignes en question, on va juste préciser dans la fonction read_csv 
-# que l'on veut séparer les entrées uniquement par des ";" avec le paramètre: sep=";"
+    On affiche ensuite les premières lignes du dataset grâce à la méthode head()
 
-# On affiche ensuite les premières lignes du dataset grâce à la méthode head()
+    Pour afficher des statistiques descriptives des colonnes numériques principales on utilise 
+    la méthode describe() sur notre dataframe en choisissant les colonnes que l'on souhaites calculer:
 
-# Pour afficher des statistiques descriptives des colonnes numériques principales on utilise 
-# la méthode describe() sur notre dataframe en choisissant les colonnes que l'on souhaites calculer:
+    important_columns = ['fauteuils', 'écrans','entrées 2021', 'entrées 2022']
+    df_selected = df[important_columns]
+    print(df_selected.describe())
 
-important_columns = ['fauteuils', 'écrans','entrées 2021', 'entrées 2022']
-df_selected = df[important_columns]
-print(df_selected.describe())
+    L'entrée moyenne pour chaque région est de 1
 
-# L'entrée moyenne pour chaque région est de 1
+Exercice 2 (Question 2):
+    Il n'y a que deux régions donc la question est erronnée 
 
-# Il n'y a que deux régions donc la question est erronnée 
+Exercice 3 (Question 4):
+    Le nombre d'écrans est la variable ayant le plus d'impact, 
+    on constate une hausse significatives du nombre d'entrées en fonction
+    du nombre d'écrans à disposition.
 
-# Le nombre d'écrans est la variable ayant le plus d'impact, 
-# on constate une hausse significatives du nombre d'entrées en fonction
-# du nombre d'écrans à disposition.
+    Le nombre de fauteuils à contrario ne fait pas augmenter drastiquement 
+    le nombre d'entrées.
 
-# Le nombre de fauteuils à contrario ne fait pas augmenter drastiquement 
-# le nombre d'entrées.
+Exercice 4 (Question 5):
 
-# R² (coefficient de détermination) : On a un R² qui est autour de 0.46 (2021) et 0.51 (2022). Cela signifie que seulement environ 46% à 51% de la variation des entrées est expliquée par les variables explicatives (écrans, fauteuils, population).
+    R² (coefficient de détermination) : On a un R² qui est autour de 0.46 (2021) et 0.51 (2022). Cela signifie que seulement environ 46% à 51% de la variation des entrées est expliquée par les variables explicatives (écrans, fauteuils, population).
 
-# MAE (erreur moyenne absolue) : Les erreurs sont de 44 044 entrées (2021) et 65 807 entrées (2022), ce qui est relativement élevé.
+    MAE (erreur moyenne absolue) : Les erreurs sont de 44 044 entrées (2021) et 65 807 entrées (2022), ce qui est relativement élevé.
 
-# Conclusion :
-# Le nombre d'écrans et de fauteuils semble être des prédicteurs partiellement efficaces, mais le modèle ne parvient pas à expliquer une grande partie des variations des entrées annuelles.
-# Écrans et fauteuils ne sont probablement pas les seuls facteurs importants. D'autres variables, telles que les événements spéciaux, les prix des billets, ou la localisation géographique, peuvent jouer un rôle important et ne sont pas prises en compte dans ce modèle.
+    Conclusion :
+    Le nombre d'écrans et de fauteuils semble être des prédicteurs partiellement efficaces, mais le modèle ne parvient pas à expliquer une grande partie des variations des entrées annuelles.
+    Écrans et fauteuils ne sont probablement pas les seuls facteurs importants. D'autres variables, telles que les événements spéciaux, les prix des billets, ou la localisation géographique, peuvent jouer un rôle important et ne sont pas prises en compte dans ce modèle.
 
-# Pour augmenter les entrées dans un cinéma fictif, l'ajout d'écrans semble plus efficace que l'ajout de fauteuils, selon l'impact estimé des variables dans le modèle.
+Exercie 5: 
 
-# Actuellement, il y a 2 écrans et 120 fauteuils.
-# Augmentons le nombre de fauteuils de 10 : cela ajoute environ 300 entrées supplémentaires.
-# Augmentons le nombre d'écrans de 1 : cela ajouterait environ 500 entrées supplémentaires.
+    Pour augmenter les entrées dans un cinéma fictif, l'ajout d'écrans semble plus efficace que l'ajout de fauteuils, selon l'impact estimé des variables dans le modèle.
 
-# Ajouter un écran semble avoir un impact plus important sur l'augmentation des entrées par rapport à l'augmentation des fauteuils
-# De plus l'ajout d'un écran supplémentaire permet théoriquement de diffuser un film de plus par sorties ce qui peut augmenter le nombre de fréquentations
-# et par conséquent le nombre d'entrées.
+    Actuellement, il y a 2 écrans et 120 fauteuils.
+
+    #coefficient des écrans B(e) = 5000
+    #coefficient des fauteuils B(f) = 50 
+    #Intercept B(0) = 10000
+
+    Le modèle prédit les entrées comme suit :
+
+    Entrées = B(O) + B(e) ecrans ⋅ ecrans + B(f) ⋅ fauteuils = 26000 entrées
+
+    Pour le cinéma fictif actuel :
+
+    Entrées(es) actuelles = 10000 + (5000 ⋅ 2) + (50 ⋅ 120)
+    Entrées(es) actuelles = 10000 + 10000 + 6000 = 26000 entrées annuelles
+
+     avec un écran en plus, on a 5000 entrées en plus, avec 30 fauteuils en plus on a 1500 entrées en plus
+
+    Ajouter un écran semble avoir un impact plus important sur l'augmentation des entrées par rapport à l'augmentation des fauteuils
+
+    Ajouter un nouvel écran induit un coût supplémentaire mais promet une rentabilité à la hausse sur le long terme.
+
+    De plus l'ajout d'un écran supplémentaire permet théoriquement de diffuser un film de plus par sorties ce qui peut assurément augmenter le nombre de fréquentations
+    et par conséquent le nombre d'entrées.
+
 

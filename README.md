@@ -1,7 +1,7 @@
 # Cinema-Data-Analysis
 
 Ce projet a pour objectif d'étudier l' impact des infrastructures cinématographiques
-(écrans et fauteuils) sur les entrées annuelles dans les cinémas français.
+(écrans et fauteuils) sur les entrées annuelles dans les cinémas français (Ile-de-France)
 
 ## Installation
 
@@ -16,6 +16,7 @@ Ce projet a pour objectif d'étudier l' impact des infrastructures cinématograp
         .\setup.ps1
 
     MacOs/Linux:
+        .\setup.sh
         
 
-C'est tout bon, vous êtes prêts à coder dans un environnement propre !
+C'est tout bon !

@@ -4,10 +4,14 @@ from sklearn.metrics import mean_absolute_error, r2_score
 import pandas as pd
 
 df = pd.read_csv("./salle_de_cinema_ile-de-france.csv", on_bad_lines='skip', encoding='utf-8', sep=';')
+
+#Question 1
+
 analyseDf = df['entrées 2021'].describe()
 X = df[['écrans', 'fauteuils', 'population de la commune']]  
 y = df['entrées 2022'].fillna(analyseDf['mean'])
 
+#Question 2-3
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -22,3 +26,4 @@ mae = mean_absolute_error(y_test, y_pred)
 print(f"Coefficient de détermination (R²): {r2}")
 print(f"Erreur moyenne absolue (MAE): {mae}")
 
+#Question 4-5 => voir notes.txt
